@@ -1,6 +1,6 @@
 require 'config'
 local match = string.match
-local ngxmatch=ngx.re.match
+local ngxmatch=ngx.re.find
 local unescape=ngx.unescape_uri
 local get_headers = ngx.req.get_headers
 local optionIsOn = function (options) return options == "on" and true or false end
@@ -45,7 +45,7 @@ function log(method,url,data,ruletag)
 end
 ------------------------------------规则读取函数-------------------------------------------------------------------
 function read_rule(var)
-    file = io.open(rulepath..'/'..var,"r")
+    file = io.open(rulepath..var,"r")
     if file==nil then
         return
     end
